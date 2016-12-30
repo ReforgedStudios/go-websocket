@@ -266,7 +266,7 @@ func (c *connection) ID() string {
 	return c.id
 }
 
-func (c *connection) Underline() string {
+func (c *connection) Underline() UnderlineConnection {
 	return c.underline
 }
 
