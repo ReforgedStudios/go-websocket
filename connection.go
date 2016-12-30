@@ -266,6 +266,10 @@ func (c *connection) ID() string {
 	return c.id
 }
 
+func (c *connection) Underline() string {
+	return c.underline
+}
+
 func (c *connection) fireDisconnect() {
 	for i := range c.onDisconnectListeners {
 		c.onDisconnectListeners[i]()
