@@ -88,6 +88,9 @@ type (
 		// Disconnect disconnects the client, close the underline websocket conn and removes it from the conn list
 		// returns the error, if any, from the underline connection
 		Disconnect() error
+		// Returns the underline connection
+		Underline() UnderlineConnection
+
 	}
 
 	connection struct {
