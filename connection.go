@@ -171,11 +171,6 @@ func (c *connection) writer() {
 			}
 			res.Write(msg)
 
-			n := len(c.send)
-			for i := 0; i < n; i++ {
-				res.Write(<-c.send)
-			}
-
 			if err := res.Close(); err != nil {
 				return
 			}
