@@ -166,16 +166,13 @@ func (c *connection) writer() {
 			}
 
 			c.underline.SetWriteDeadline(time.Now().Add(c.server.config.WriteTimeout))
-			res, err := c.underline.NextWriter(c.messageType)
+			err := c.underline.WriteMessage(c.messageType, msg)
 			if err != nil {
+				log.Println("Write err ", err)
 				return
 			}
 			log.Println("res.Write ", len(msg), " bytes")
-			res.Write(msg)
 
-			if err := res.Close(); err != nil {
-				return
-			}
 
 		case <-ticker.C:
 			if err := c.write(websocket.PingMessage, []byte{}); err != nil {
