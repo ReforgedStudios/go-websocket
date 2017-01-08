@@ -6,6 +6,7 @@ import (
 	"io"
 	"strconv"
 	"time"
+	"log"
 )
 
 // UnderlineConnection is used for compatible with Iris(fasthttp web framework) we only need ~4 funcs from websocket.Conn so:
@@ -169,6 +170,7 @@ func (c *connection) writer() {
 			if err != nil {
 				return
 			}
+			log.Println("res.Write ", len(msg), " bytes")
 			res.Write(msg)
 
 			if err := res.Close(); err != nil {
