@@ -171,7 +171,7 @@ func (c *connection) writer() {
 				log.Println("Write err ", err)
 				return
 			}
-			log.Println("res.Write ", len(msg), " bytes")
+			log.Println("underline.WriteMessage ", c.messageType, " ", len(msg), " bytes")
 
 
 		case <-ticker.C:
