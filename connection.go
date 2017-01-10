@@ -171,8 +171,6 @@ func (c *connection) writer() {
 				log.Println("Write err ", err)
 				return
 			}
-			log.Println("underline.WriteMessage ", c.messageType, " ", len(msg), " bytes")
-
 
 		case <-ticker.C:
 			if err := c.write(websocket.PingMessage, []byte{}); err != nil {
