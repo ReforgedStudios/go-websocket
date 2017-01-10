@@ -91,7 +91,8 @@ type (
 		Disconnect() error
 		// Returns the underline connection
 		Underline() UnderlineConnection
-
+		// Writes message to the connection send queue
+		WriteMessage(data []byte)
 	}
 
 	connection struct {
@@ -136,6 +137,10 @@ func newConnection(underlineConn UnderlineConnection, s *server) *connection {
 	c.all = newEmmiter(c, All)
 
 	return c
+}
+
+func (c *connection) WriteMessage(data []byte) {
+	c.send <- data
 }
 
 func (c *connection) write(websocketMessageType int, data []byte) error {
